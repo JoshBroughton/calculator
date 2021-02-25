@@ -65,5 +65,23 @@ function operatorClick() {
         })
     }
 }
+//adds event listeners to operators other than equals that update display with
+//the operator and save the id for the operator that previously made operate
+//function will recognize
+function deleteChar() {
+    console.log(displayNum)
+    displayNum = displayNum.slice(0, -1);
+    updateDisplay(displayNum);
+}
+//deletes the last character from the displayNum
+function deleteClick() {
+    document.getElementById("delete").addEventListener("click", function() {
+        console.log(displayNum);
+        displayNum = displayNum.slice(0, -1);
+        updateDisplay(displayNum);
+    })
+}
+
 numberButtons();    
 operatorClick();
+deleteClick();
