@@ -1,15 +1,21 @@
+body {
+    background-color: rgb(153, 153, 153);
+}
 .wrapper {
     display: grid;
     justify-content: center;
     align-content: center;
-    grid-template-rows: 150px auto;
+    grid-template-rows: 100vh auto;
 }
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(6, 1fr);
-    height: 75vh;
-    width: 50vw;
+    height: 500px;;
+    width: 425px;
+    background-color: gray;
+    border: 10px solid black;
+    border-radius: 10px;
 }
 .calc-display {
     grid-column: 1 / span 4;
@@ -22,5 +28,8 @@
 #clear {
     grid-column: 3 / span 2;
     grid-row: 2;
+}
+.button {
+    background-color: gray;
 }
 
