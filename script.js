@@ -21,3 +21,10 @@ function operate(operator, x, y) {
         return divide(x, y);
     }
 }
+//TODO: Add event listeners that append the pressed number to the display number
+//and keep this number saved
+//Add event listeners to operators that cause operators to dipslay on press and
+//save the operator in a variable
+//event listener for = that causes that executes operate with these variables
+//also cause operate to execute if one of the other operators is clicked instead
+//of equals
