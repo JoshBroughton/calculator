@@ -9,7 +9,7 @@ body {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(6, 1fr);
     height: 600px;
-    width: 500px;
+    width: 450px;
     background-color: rgb(63, 63, 63);
     border: 15px solid black;
     border-radius: 20px;

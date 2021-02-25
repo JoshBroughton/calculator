@@ -15,7 +15,7 @@ function operate(operator, x, y) {
         return add(x, y);
     } else if (operator === "-") {
         return subtract(x, y);
-    } else if (operator === "X") {
+    } else if (operator === "*") {
         return multiply(x, y);
     } else if (operator === "/") {
         return divide(x, y);
@@ -29,13 +29,13 @@ function operate(operator, x, y) {
 //also cause operate to execute if one of the other operators is clicked instead
 //of equals
 let displayNum = "";
-var x;
-var y;
+let operator = "";
+let x = "";
+let y = "";
 function numberButtons() {
     let elements = document.getElementsByClassName("button number");
-    for (i=0;i<elements.length;i++) {
-        thisElement = elements[i];
-        thisElement.addEventListener("click", function() {
+    for (let i=0;i<elements.length;i++) {
+        elements[i].addEventListener("click", function() {
             displayNum += this.textContent;
             updateDisplay(displayNum);
         }) 
@@ -47,4 +47,23 @@ function updateDisplay(newText) {
     let display = document.querySelector(".calc-display");
     display.innerText = newText;
 }
+//takes an argument and updates the calclator display with the argument
+function operatorClick() {
+    let elements = document.getElementsByClassName("button operator");
+    for (let i=0;i<elements.length;i++) {
+        elements[i].addEventListener("click", function() {
+            updateDisplay(this.textContent);
+            if (this.id === "divide") {
+                operator = "/";
+            } else if (this.id === "multiply") {
+                operator = "*";
+            } else if (this.id === "subtract") {
+                operator = "-";
+            } else if (this.id === "add") {
+                operator = "+";
+            }
+        })
+    }
+}
 numberButtons();    
+operatorClick();
