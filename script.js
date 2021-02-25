@@ -36,8 +36,10 @@ function numberButtons() {
     let elements = document.getElementsByClassName("button number");
     for (let i=0;i<elements.length;i++) {
         elements[i].addEventListener("click", function() {
-            displayNum += this.textContent;
-            updateDisplay(displayNum);
+            if (displayNum.length < 8) {
+                displayNum += this.textContent;
+                updateDisplay(displayNum);
+            } 
         }) 
     }
 } 
@@ -69,18 +71,17 @@ function operatorClick() {
 //the operator and save the id for the operator that previously made operate
 //function will recognize
 function deleteChar() {
-    console.log(displayNum)
     displayNum = displayNum.slice(0, -1);
     updateDisplay(displayNum);
 }
 //deletes the last character from the displayNum
 function deleteClick() {
     document.getElementById("delete").addEventListener("click", function() {
-        console.log(displayNum);
         displayNum = displayNum.slice(0, -1);
         updateDisplay(displayNum);
     })
 }
+//deletes most recent digit from displayNum and updates display
 
 numberButtons();    
 operatorClick();
