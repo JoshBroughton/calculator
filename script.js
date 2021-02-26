@@ -48,7 +48,11 @@ function numberButtons() {
 //displayed in display
 function updateDisplay(newText) {
     let display = document.querySelector(".calc-display");
-    display.innerText = newText;
+    if (newText.length < 8) {
+        display.innerText = newText;
+    } else {
+        display.innerText = "Overflow";
+    }
 }
 //takes an argument and updates the calclator display with the argument
 function operatorClick() {
@@ -70,12 +74,13 @@ function operatorClick() {
             if (x === "" && y === "") {
                 x = displayNum;
                 displayNum = "";
+                console.log(displayNum);
             } else if (x != "" && y === "") {
                 y = displayNum;
                 x = operate(operator, x, y);
-                displayNum = x;
                 y = "";
-                updateDisplay(displayNum);
+                displayNum = "";
+                updateDisplay(x.toString());
             } 
         })
     }
