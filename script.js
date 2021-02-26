@@ -30,6 +30,7 @@ function operate(operator, x, y) {
 //of equals
 let displayNum = "";
 let operator = "";
+let previousResult = "";
 let x = "";
 let y = "";
 function numberButtons() {
@@ -64,12 +65,25 @@ function operatorClick() {
             } else if (this.id === "add") {
                 operator = "+";
             }
+            //need another set of if statements to assign x or y to the value
+            //that was in displayNum when the operator was clicked
+            if (x === "" && y === "") {
+                x = displayNum;
+                displayNum = "";
+            } else if (x != "" && y === "") {
+                y = displayNum;
+                x = operate(operator, x, y);
+                displayNum = x;
+                y = "";
+                updateDisplay(displayNum);
+            } 
         })
     }
 }
 //adds event listeners to operators other than equals that update display with
 //the operator and save the id for the operator that previously made operate
 //function will recognize
+
 function deleteChar() {
     displayNum = displayNum.slice(0, -1);
     updateDisplay(displayNum);
@@ -82,7 +96,9 @@ function deleteClick() {
     })
 }
 //deletes most recent digit from displayNum and updates display
+function evaluate() {
 
+}
 numberButtons();    
 operatorClick();
 deleteClick();
