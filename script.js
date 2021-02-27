@@ -1,5 +1,7 @@
 function add(x, y) {
-    return x + y;
+    x = parseFloat(x);
+    y = parseFloat(y);
+    return (x + y);
 }
 function subtract(x, y) {
     return x - y;
