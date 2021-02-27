@@ -71,17 +71,25 @@ function operatorClick() {
             }
             //need another set of if statements to assign x or y to the value
             //that was in displayNum when the operator was clicked
-            if (x === "" && y === "") {
+            if (x === "" && y === "" && previousResult === "") {
                 x = displayNum;
                 displayNum = "";
-                console.log(displayNum);
             } else if (x != "" && y === "") {
                 y = displayNum;
                 x = operate(operator, x, y);
                 y = "";
                 displayNum = "";
                 updateDisplay(x.toString());
-            } 
+            } else if (x === "" && y === "" && previousResult != "") {
+                x = previousResult;
+                displayNum = "";
+            } else if (x != "" && y === "" && previousResult != "") {
+                y = displayNum;
+                x = operate(operator, x, y);
+                y = "";
+                displayNum = "";
+                updateDisplay(x.toString());
+            }
         })
     }
 }
@@ -102,8 +110,18 @@ function deleteClick() {
 }
 //deletes most recent digit from displayNum and updates display
 function evaluate() {
-
+    document.getElementById("equals").addEventListener("click", function() {
+        if (x != "" && y === "") {
+            y = displayNum;
+            previousResult = operate(operator, x, y);
+            y = "";
+            x = "";
+            displayNum = "";
+            updateDisplay(previousResult.toString());
+        }
+    })
 }
 numberButtons();    
 operatorClick();
 deleteClick();
+evaluate();
