@@ -26,6 +26,8 @@ function operate(operator, x, y) {
 //TODO: fix bug when a digit is clicked when a result is displaying
 //TODO: fix bug where operator executes next intended operation instead
 //of previously clicked
+//TODO: fix bug where operators all break after a string of operations - 
+//probably related to variable types?
 let displayNum = "";
 let operator = "";
 let previousResult = "";
@@ -58,35 +60,64 @@ function operatorClick() {
     for (let i=0;i<elements.length;i++) {
         elements[i].addEventListener("click", function() {
             updateDisplay(this.textContent);
-            if (this.id === "divide") {
-                operator = "/";
-            } else if (this.id === "multiply") {
-                operator = "*";
-            } else if (this.id === "subtract") {
-                operator = "-";
-            } else if (this.id === "add") {
-                operator = "+";
-            }
-            //need another set of if statements to assign x or y to the value
-            //that was in displayNum when the operator was clicked
-            if (x === "" && y === "" && previousResult === "") {
-                x = displayNum;
-                displayNum = "";
-            } else if (x != "" && y === "") {
-                y = displayNum;
-                x = operate(operator, x, y);
-                y = "";
-                displayNum = "";
-                updateDisplay(x.toString());
-            } else if (x === "" && y === "" && previousResult != "") {
-                x = previousResult;
-                displayNum = "";
-            } else if (x != "" && y === "" && previousResult != "") {
-                y = displayNum;
-                x = operate(operator, x, y);
-                y = "";
-                displayNum = "";
-                updateDisplay(x.toString());
+            if (operator === "") {
+                if (this.id === "divide") {
+                    operator = "/";
+                } else if (this.id === "multiply") {
+                    operator = "*";
+                } else if (this.id === "subtract") {
+                    operator = "-";
+                } else if (this.id === "add") {
+                    operator = "+";
+                }
+                if (x === "" && y === "" && previousResult === "") {
+                    x = displayNum;
+                    displayNum = "";
+                } else if (x != "" && y === "") {
+                    y = displayNum;
+                    x = operate(operator, x, y);
+                    y = "";
+                    displayNum = "";
+                    updateDisplay(x.toString());
+                } else if (x === "" && y === "" && previousResult != "") {
+                    x = previousResult;
+                    displayNum = "";
+                } else if (x != "" && y === "" && previousResult != "") {
+                    y = displayNum;
+                    x = operate(operator, x, y);
+                    y = "";
+                    displayNum = "";
+                    updateDisplay(x.toString());
+                }
+            } else {
+                if (x === "" && y === "" && previousResult === "") {
+                    x = displayNum;
+                    displayNum = "";
+                } else if (x != "" && y === "") {
+                    y = displayNum;
+                    x = operate(operator, x, y);
+                    y = "";
+                    displayNum = "";
+                    updateDisplay(x.toString());
+                } else if (x === "" && y === "" && previousResult != "") {
+                    x = previousResult;
+                    displayNum = "";
+                } else if (x != "" && y === "" && previousResult != "") {
+                    y = displayNum;
+                    x = operate(operator, x, y);
+                    y = "";
+                    displayNum = "";
+                    updateDisplay(x.toString());
+                }
+                if (this.id === "divide") {
+                    operator = "/";
+                } else if (this.id === "multiply") {
+                    operator = "*";
+                } else if (this.id === "subtract") {
+                    operator = "-";
+                } else if (this.id === "add") {
+                    operator = "+";
+                }
             }
         })
     }
