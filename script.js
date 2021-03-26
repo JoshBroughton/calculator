@@ -24,8 +24,6 @@ function operate(operator, x, y) {
     }
 }
 //TODO: fix bug when a digit is clicked when a result is displaying
-//TODO: fix bug where operator executes next intended operation instead
-//of previously clicked
 //TODO: fix bug where operators all break after a string of operations - 
 //probably related to variable types?
 let displayNum = "";
